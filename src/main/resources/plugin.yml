@@ -1,0 +1,5 @@
+name: TabListAPI
+version: ${project.version}
+main: dev.fls.tablist.TabListAPI
+api-version: 1.17
+authors: [ _FearLessS ]
