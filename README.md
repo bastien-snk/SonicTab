@@ -1,6 +1,6 @@
 
 <p align="center">
-![Logo](https://avatars.githubusercontent.com/u/76408197?s=200&v=4)
+    <img src="https://avatars.githubusercontent.com/u/76408197?s=200&v=4" alt="lyra-logo" width="120px" height="120px"/>
 </p>
     
 # 🦔 SonicTab - Create a custom TabList faster than Sonic.
