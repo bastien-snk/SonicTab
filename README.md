@@ -3,9 +3,10 @@
     <img src="https://avatars.githubusercontent.com/u/76408197?s=200&v=4" alt="lyra-logo" width="120px" height="120px"/>
 </p>
     
-# 🦔 SonicTab - Create a custom TabList faster than Sonic.
+
 
 <p align="center">
+    # 🦔 SonicTab - Create a custom TabList faster than Sonic.
   <i>SonicTab is an API (Application Programming Interface) that will allow you to create customized TabList(s) easily and fastly. En vous proposant un système de Grille à 2 Dimensions simple à comprendre.
 </p>
 
