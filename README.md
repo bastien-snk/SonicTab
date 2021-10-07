@@ -6,7 +6,7 @@
 
 
 <p align="center">
-    # 🦔 SonicTab - Create a custom TabList faster than Sonic.
+    <h1 align="center">🦔 SonicTab - Create a custom TabList faster than Sonic.</h1>
   <i>SonicTab is an API (Application Programming Interface) that will allow you to create customized TabList(s) easily and fastly. En vous proposant un système de Grille à 2 Dimensions simple à comprendre.
 </p>
 
