@@ -61,7 +61,7 @@ Afterwards, you can add a Body. Originally this area contains the list of player
 template.getBody();
 ```
 
-Such as:
+Such as: <br>
 <u>Columns: </u> Define the number of columns you want for your tablist:
 
 ```java
