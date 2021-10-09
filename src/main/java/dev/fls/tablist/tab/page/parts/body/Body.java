@@ -12,10 +12,15 @@ import java.util.*;
 
 public class Body extends PagePart {
 
-    private static final int MAX_SIZE = 80;
+    private static final int MAX_LINES = 80;
+    private static final int MAX_LINES_PER_COLUMN = 20;
+    private static final int MAX_COLUMNS = MAX_LINES / MAX_LINES_PER_COLUMN;
 
     private Queue<BodyLine> lines = new LinkedList<>();
     private List<BodyLine> emptyLines = new ArrayList<>();
+
+    public final BodyLine[][] empty = new BodyLine[20][4];
+    public final BodyLine[][] full = new BodyLine[20][4];
     private int columns;
     private boolean removeBaseLines;
 
@@ -24,6 +29,10 @@ public class Body extends PagePart {
     }
 
     public Body addLine(BodyLine line) {
+        full[line.getZ()][line.getX()] = line;
+        empty[line.getZ()][line.getX()] = null;
+
+        // OLD
         lines.offer(line);
         if(emptyLines.size() > 0) emptyLines.remove(0);
         return this;
@@ -35,6 +44,9 @@ public class Body extends PagePart {
     }
 
     public Body removeLine(int index) {
+        // TODO addd array deletion
+
+        // OLD
         lines.remove(index);
         return this;
     }
@@ -56,13 +68,19 @@ public class Body extends PagePart {
         return this;
     }
 
-    public Body setColumns(int columns) {
-        if(columns > MAX_SIZE / 20) columns = MAX_SIZE / 20;
+    public Body setColumns(int columns, int lineHeight) {
+        if(columns > MAX_COLUMNS) columns = MAX_COLUMNS;
         this.columns = columns;
 
         int linesToAdd = maxLines() - lines.size();
-        for(int i = 0; i < linesToAdd; i++) {
-            emptyLines.add(new BodyLine("", 0, 999));
+        for(int i = 0; i <= linesToAdd; i++) {
+            int x = i / 20;
+            int z = i - 20 * x;
+
+            BodyLine line = new BodyLine(x + "." + z + text, 0, x, z)
+                    .setSkin(SkinColor.DARK_GRAY.getTexture(), SkinColor.DARK_GRAY.getSignature());
+            empty[z][x <= 0 ? 0 : x - 1] = line;
+            emptyLines.add(line);
         }
         return this;
     }
