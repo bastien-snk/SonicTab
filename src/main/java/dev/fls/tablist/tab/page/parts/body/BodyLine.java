@@ -49,6 +49,30 @@ public class BodyLine {
         setName();
     }
 
+    /**
+     * TODO find better method
+     * @param z
+     * @return
+     */
+    private static String getZlineCode(int z) {
+        String strz = z + "";
+
+        if (z < 10 && z > 0) {
+            return 10 + strz;
+        } else {
+            switch (z) {
+                case 10:
+                    return 110 + "";
+                case 11:
+                    return 111 + "";
+                default:
+                    break;
+            }
+        }
+
+        return strz;
+    }
+
     private void setName() {
         try {
             Field headerField = entityPlayer.getClass().getDeclaredField("listName");
