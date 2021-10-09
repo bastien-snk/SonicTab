@@ -81,10 +81,9 @@ public class Body extends PagePart {
                 removeBaseLines(player);
             }, 2);
 
-        lines.forEach(line -> {
-            Bukkit.getConsoleSender().sendMessage(line.getText());
-            line.sendPacket(player);
-        });
+        lines.forEach(line -> line.show(player));
+        emptyLines.forEach(line -> line.show(player));
+    }
 
     public void hide(Player player) {
         for(BodyLine line : emptyLines) {
