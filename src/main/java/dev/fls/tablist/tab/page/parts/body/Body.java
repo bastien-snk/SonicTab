@@ -1,7 +1,9 @@
 package dev.fls.tablist.tab.page.parts.body;
 
+import dev.fls.tablist.tab.TabListTemplate;
 import dev.fls.tablist.tab.page.PagePart;
 import dev.fls.tablist.tab.page.PartType;
+import dev.fls.tablist.tab.skin.SkinColor;
 import dev.fls.tablist.utils.PacketUtils;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerInfo;
 import org.bukkit.Bukkit;
@@ -68,9 +70,16 @@ public class Body extends PagePart {
         return this;
     }
 
-    public Body setColumns(int columns, int lineHeight) {
+    public Body setColumns(int columns, int lineWidth) {
         if(columns > MAX_COLUMNS) columns = MAX_COLUMNS;
         this.columns = columns;
+
+        String text = "";
+        applyLineWidth: {
+            for(int i = 1; i <= lineWidth; i++) {
+                text += " ";
+            }
+        }
 
         int linesToAdd = maxLines() - lines.size();
         for(int i = 0; i <= linesToAdd; i++) {
