@@ -10,7 +10,10 @@ public class TabListTemplate {
 
     private final Header header = new Header();
     private final Footer footer = new Footer();
-    private final Body body = new Body();
+    private final Body body = new Body(this);
+    private final List<UUID> displayedTo = new ArrayList<>();
+
+
 
     public Header getHeader() {
         return header;
@@ -24,7 +27,16 @@ public class TabListTemplate {
         return body;
     }
 
-    public void display(Player player) {
+    public List<UUID> getDisplayedTo() {
+        return displayedTo;
+    }
+
+    public static JavaPlugin getPlugin() {
+        return plugin;
+    }
+
+    public void show(Player player) {
+        displayedTo.add(player.getUniqueId());
         OptionalPart.sendPacket(player, header, footer);
         body.display(player);
     }
