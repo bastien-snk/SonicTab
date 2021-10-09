@@ -34,10 +34,18 @@ public class BodyLine {
     public BodyLine(String text, int ping, int x, int z, String name, EntityPlayer entityPlayer) {
         MinecraftServer nmsServer = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Bukkit.getWorlds().get(0)).getHandle();
+        if(entityPlayer != null) {
+            this.entityPlayer = entityPlayer;
+            this.ping = entityPlayer.ping;
+        } else {
+            this.entityPlayer = new EntityPlayer(nmsServer, world, new GameProfile(UUID.randomUUID(), name), new PlayerInteractManager(world));
+            this.entityPlayer.ping = this.ping;
+            this.ping = ping;
+        }
         this.text = text;
-        entityPlayer = new EntityPlayer(nmsServer, world, new GameProfile(UUID.randomUUID(), "line" + index), new PlayerInteractManager(world));
-        this.ping = ping;
-        entityPlayer.ping = this.ping;
+        this.x = x;
+        this.z = z;
+
         setName();
     }
 
