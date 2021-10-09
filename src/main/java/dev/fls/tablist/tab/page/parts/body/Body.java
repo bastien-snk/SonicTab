@@ -75,20 +75,33 @@ public class Body extends PagePart {
         return columns * 20;
     }
 
-    public void display(Player player) {
-        if(removeBaseLines) removeBaseLines(player);
-        /*for(int i = 0; i < lines.size(); i++) {
-            lines.get(i).sendPacket(player);
-        }*/
+    public void show(Player player) {
+        if(removeBaseLines)
+            Bukkit.getScheduler().runTaskLaterAsynchronously(TabListTemplate.getPlugin(), () -> {
+                removeBaseLines(player);
+            }, 2);
 
         lines.forEach(line -> {
             Bukkit.getConsoleSender().sendMessage(line.getText());
             line.sendPacket(player);
         });
 
-        for(int i = 0; i < emptyLines.size(); i++) {
-            emptyLines.get(i).sendPacket(player);
+    public void hide(Player player) {
+        for(BodyLine line : emptyLines) {
+            line.hide(player);
+        }
+
+        for(BodyLine line : lines) {
+            line.hide(player);
         }
     }
 
+    public void reset(Player player) {
+        for(Player online : Bukkit.getOnlinePlayers()) {
+            BodyLine line = new BodyLine(online.getPlayerListName(), -1, -1, online.getName(), ((CraftPlayer) player).getHandle())
+                    .setSkin(online.getUniqueId());
+            line.show(player);
+        }
+        hide(player);
+    }
 }

@@ -1,16 +1,27 @@
 package dev.fls.tablist.tab.page.parts.body;
 
+import com.google.gson.Gson;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import com.mojang.util.UUIDTypeAdapter;
 import dev.fls.tablist.utils.PacketUtils;
+import dev.fls.tablist.utils.mojangapi.MinecraftProfile;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Player;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.net.URL;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BodyLine {
 
@@ -126,13 +137,29 @@ public class BodyLine {
         return text;
     }
 
-    public void sendPacket(Player player) {
+    public int getX() {
+        return x;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
+    public void show(Player player) {
         Packet[] packets = new Packet[]{
                 new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer),
                 new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_LATENCY, entityPlayer),
         };
 
-        Bukkit.getConsoleSender().sendMessage(text);
+        for(Packet packet : packets) {
+            PacketUtils.sendPacket(player, packet);
+        }
+    }
+
+    public void hide(Player player) {
+        Packet[] packets = new Packet[]{
+                new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, entityPlayer),
+        };
 
         for(Packet packet : packets) {
             PacketUtils.sendPacket(player, packet);
