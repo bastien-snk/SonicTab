@@ -103,8 +103,6 @@ line.setSkin(texture, signature);
 
 - Ajouter un sytème pour faire en sorte que le nom ne dépasse pas de sa case quand il y a plusieurs colonnes
 
-- Déterminer le nombre max de lignes par colonne
-
 - Animation, sous forme de plusieurs TabListTemplate qui s'altèrnent sur une Runnable async
 
 - Quand on supprime une ligne, remplacer celle-ci par une ligne vide
