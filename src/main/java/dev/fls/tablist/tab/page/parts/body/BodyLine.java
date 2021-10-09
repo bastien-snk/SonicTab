@@ -90,6 +90,28 @@ public class BodyLine {
         return this;
     }
 
+    public BodyLine setSkin(UUID uuid) {
+        try {
+            HttpsURLConnection connection = (HttpsURLConnection) new URL(String.format("https://sessionserver.mojang.com/session/minecraft/profile/%s?unsigned=false", UUIDTypeAdapter.fromUUID(uuid))).openConnection();
+            if (connection.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+                Stream<String> reply = new BufferedReader(new InputStreamReader(connection.getInputStream())).lines();
+                List<String> lines = reply.collect(Collectors.toList());
+                String line = "";
+                for(String str : lines) {
+                    line += str;
+                }
+                Gson gson = new Gson();
+                MinecraftProfile profile = gson.fromJson(line, MinecraftProfile.class);
+                entityPlayer.getProfile().getProperties().put("textures", new Property("textures", profile.getProperties()[0].getValue(), profile.getProperties()[0].getSignature()));
+            } else {
+                System.out.println("Connection could not be opened (Response code " + connection.getResponseCode() + ", " + connection.getResponseMessage() + ")");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
     public void setPing(int ping) {
         this.ping = ping;
         entityPlayer.ping = this.ping;
