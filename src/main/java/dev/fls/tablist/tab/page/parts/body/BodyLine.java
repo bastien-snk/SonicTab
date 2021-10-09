@@ -17,8 +17,21 @@ public class BodyLine {
     private final EntityPlayer entityPlayer;
     private int ping;
     private String text;
+    private final int x,z;
 
-    public BodyLine(String text, int ping, int index) {
+    public BodyLine(String text, int ping, int x, int z) {
+        this(text, ping, x, z, x + "." + getZlineCode(z), null);
+    }
+
+    public BodyLine(String text, int ping, int x, int z, String name) {
+        this(text, ping, x, z, name, null);
+    }
+
+    public BodyLine(String text, int x, int z, String name, EntityPlayer entityPlayer) {
+        this(text, entityPlayer.ping, x, z, name, entityPlayer);
+    }
+
+    public BodyLine(String text, int ping, int x, int z, String name, EntityPlayer entityPlayer) {
         MinecraftServer nmsServer = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Bukkit.getWorlds().get(0)).getHandle();
         this.text = text;
