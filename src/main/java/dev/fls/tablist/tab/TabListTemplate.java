@@ -5,12 +5,19 @@ import dev.fls.tablist.tab.page.parts.Footer;
 import dev.fls.tablist.tab.page.parts.Header;
 import dev.fls.tablist.tab.page.parts.body.Body;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class TabListTemplate {
+
+    private static JavaPlugin plugin;
+
+    public TabListTemplate(JavaPlugin pl) {
+        plugin = pl;
+    }
 
     private final Header header = new Header();
     private final Footer footer = new Footer();
@@ -31,6 +38,10 @@ public class TabListTemplate {
 
     public List<UUID> getDisplayedTo() {
         return displayedTo;
+    }
+
+    public static JavaPlugin getPlugin() {
+        return plugin;
     }
 
     public void show(Player player) {
