@@ -21,7 +21,7 @@ public class TabListTemplate {
 
     private final Header header = new Header();
     private final Footer footer = new Footer();
-    private final Body body = new Body(this);
+    private final Body body = new Body();
     private final List<UUID> displayedTo = new ArrayList<>();
 
     public Header getHeader() {
