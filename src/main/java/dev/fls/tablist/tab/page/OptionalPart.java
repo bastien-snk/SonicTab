@@ -50,13 +50,13 @@ public abstract class OptionalPart extends PagePart {
     public void addLines(String... added) {
         List<String> lines = new ArrayList<>(Arrays.asList(this.lines));
         lines.addAll(Arrays.asList(added));
-        this.lines = (String[]) lines.toArray();
+        this.lines = lines.toArray(new String[0]);
     }
 
     public void removeLines(int... removed) {
         List<String> lines = new ArrayList<>(Arrays.asList(this.lines));
         lines.removeAll(Arrays.asList(removed));
-        this.lines = (String[]) lines.toArray();
+        this.lines = lines.toArray(new String[0]);
     }
 
     public String[] getLines() {
