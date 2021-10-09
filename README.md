@@ -101,11 +101,7 @@ line.setSkin(texture, signature);
   
 ## 🚧 Roadmap
 
-- Ajouter système de Grid 2d pour trier les lignes avec des index x et z (String concaténé = x.z -> 0.0 ...)
-
 - Ajouter un sytème pour faire en sorte que le nom ne dépasse pas de sa case quand il y a plusieurs colonnes
-
-- Déterminer le nombre max de lignes par colonne
 
 - Animation, sous forme de plusieurs TabListTemplate qui s'altèrnent sur une Runnable async
 
