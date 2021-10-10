@@ -27,7 +27,7 @@ public class BodyLine {
 
     private final EntityPlayer entityPlayer;
     private int ping;
-    private String text;
+    private String text, correctLengthText;
     private final int x,z;
 
     public BodyLine(String text, int ping, int x, int z) {
@@ -54,6 +54,7 @@ public class BodyLine {
             this.ping = ping;
         }
         this.text = text;
+        this.correctLengthText = text;
         this.x = x;
         this.z = z;
 
@@ -88,7 +89,7 @@ public class BodyLine {
         try {
             Field headerField = entityPlayer.getClass().getDeclaredField("listName");
             headerField.setAccessible(true);
-            headerField.set(entityPlayer, IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + text + " \"}"));
+            headerField.set(entityPlayer, IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + correctLengthText + " \"}"));
             headerField.setAccessible(false);
         } catch (Exception e) {
             e.printStackTrace();
@@ -131,6 +132,7 @@ public class BodyLine {
     public void setText(String text) {
         if(text.length() > 48) text = text.substring(0,47);
         this.text = text;
+        setName();
     }
 
     public String getText() {
@@ -143,6 +145,15 @@ public class BodyLine {
 
     public int getZ() {
         return z;
+    }
+
+    public String getCorrectLengthText() {
+        return correctLengthText;
+    }
+
+    public void setCorrectLengthText(String txt) {
+        this.correctLengthText = txt;
+        setName();
     }
 
     public void show(Player player) {

@@ -104,6 +104,18 @@ public class Body extends PagePart {
         return lines;
     }
 
+    public int getLineWidth() {
+        return lineWidth;
+    }
+
+    public void setLineWidth(int lineWidth) {
+        this.lineWidth = lineWidth;
+        for(BodyLine line : lines) {
+            String text = line.getText().substring(0, lineWidth - 1);
+            line.setCorrectLengthText(text);
+        }
+    }
+
     private int maxLines() {
         return columns * 20;
     }
