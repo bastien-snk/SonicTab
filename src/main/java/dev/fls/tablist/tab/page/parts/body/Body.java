@@ -48,7 +48,9 @@ public class Body extends PagePart {
     }
 
     public Body addLines(BodyLine... line) {
-        lines.addAll(Arrays.asList(line));
+        for(BodyLine l : line) {
+            addLine(l);
+        }
         return this;
     }
 
@@ -60,8 +62,10 @@ public class Body extends PagePart {
         return this;
     }
 
-    public Body removeLines(int... index) {
-        lines.removeAll(Arrays.asList(index));
+    public Body removeLines(Integer... index) {
+        for(int i : index) {
+            removeLine(i);
+        }
         return this;
     }
 
