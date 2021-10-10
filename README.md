@@ -107,7 +107,6 @@ line.setSkin(texture, signature);
 
 - Quand on supprime une ligne, remplacer celle-ci par une ligne vide
 
-- Quand on ajoute une ligne, supprimer la ligne vide aux memes coordonnées
 ## ❓ FAQ
 
 #### From which version can be used this API ?
