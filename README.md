@@ -101,13 +101,12 @@ line.setSkin(texture, signature);
   
 ## 🚧 Roadmap
 
-- Ajouter un sytème pour faire en sorte que le nom ne dépasse pas de sa case quand il y a plusieurs colonnes
-
 - Animation, sous forme de plusieurs TabListTemplate qui s'altèrnent sur une Runnable async
 
 - Quand on supprime une ligne, remplacer celle-ci par une ligne vide
 
-- Quand on ajoute une ligne, supprimer la ligne vide aux memes coordonnées
+- Faire en sorte que quand on modifie la line width ça modifie aussi sur les emptyLines
+
 ## ❓ FAQ
 
 #### From which version can be used this API ?
