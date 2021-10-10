@@ -31,11 +31,6 @@ public class Body extends PagePart {
         super(PartType.BODY);
     }
 
-    public Body(int lineWidth) {
-        this();
-        this.lineWidth = lineWidth;
-    }
-
     public Body addLine(BodyLine line) {
         if(line.getText().length() > lineWidth) line.setText(line.getText().substring(0, lineWidth - 1));
         full[line.getZ()][line.getX()] = line;
