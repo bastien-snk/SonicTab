@@ -24,7 +24,7 @@ public class Body extends PagePart {
     public final BodyLine[][] empty = new BodyLine[20][4];
     public final BodyLine[][] full = new BodyLine[20][4];
     private int columns;
-    private int lineWidth;
+    private int lineWidth = -1;
     private boolean removeBaseLines;
 
     public Body() {
@@ -32,7 +32,7 @@ public class Body extends PagePart {
     }
 
     public Body addLine(BodyLine line) {
-        if(line.getText().length() > lineWidth) line.setText(line.getText().substring(0, lineWidth - 1));
+        if(line.getText().length() > lineWidth && lineWidth > -1) line.setText(line.getText().substring(0, lineWidth - 1));
         full[line.getZ()][line.getX()] = line;
         empty[line.getZ()][line.getX()] = null;
 
