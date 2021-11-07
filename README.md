@@ -105,8 +105,6 @@ line.setSkin(texture, signature);
 
 - Quand on supprime une ligne, remplacer celle-ci par une ligne vide
 
-- Faire en sorte que quand on modifie la line width ça modifie aussi sur les emptyLines
-
 ## ❓ FAQ
 
 #### From which version can be used this API ?
