@@ -105,6 +105,8 @@ line.setSkin(texture, signature);
 
 - Quand on supprime une ligne, remplacer celle-ci par une ligne vide
 
+- Ajouter dans la doc: max value de x = 3 (0,1,2,3), y = 19 (0,...,19)
+
 ## ❓ FAQ
 
 #### From which version can be used this API ?
