@@ -94,10 +94,10 @@ public class Body extends PagePart {
 
         for(int x = 0; x < lines.length; x++) {
             for(int z = 0; z < columns; z++) {
-                BodyLine line = new BodyLine(debug ? x + "." + z : text, 0, z, x)
-                        .setSkin(SkinColor.DARK_GRAY.getTexture(), SkinColor.DARK_GRAY.getSignature());
-                removeLine(z, x);
-                lines[x][z] = line;
+                BodyLine actual = lines[x][z];
+                if(actual == null) {
+                    addFakeLine(z, x, debug ? x + "." + z : text);
+                }
             }
         }
         return this;
