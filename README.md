@@ -61,6 +61,13 @@ Afterwards, you can add a Body. Originally this area contains the list of player
 template.getBody();
 ```
 
+| Variable name   | Min. value  | Max. value |
+|---|---|---|
+| Columns | 1  | 4 |
+| X | 0 | 3 |
+| Y | 0 | 19 |
+| lineWidth  | 0  | 48 |
+
 Such as: <br>
 <u>Columns: </u> Define the number of columns you want for your tablist:
 
@@ -96,12 +103,6 @@ String signature = "";
 
 line.setSkin(texture, signature);
 ```
-
-
-  
-## 🚧 Roadmap
-
-- Ajouter dans la doc: max value de x = 3 (0,1,2,3), y = 19 (0,...,19)
 
 ## ❓ FAQ
 
