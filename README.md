@@ -101,10 +101,6 @@ line.setSkin(texture, signature);
   
 ## 🚧 Roadmap
 
-- Animation, sous forme de plusieurs TabListTemplate qui s'altèrnent sur une Runnable async
-
-- Quand on supprime une ligne, remplacer celle-ci par une ligne vide
-
 - Ajouter dans la doc: max value de x = 3 (0,1,2,3), y = 19 (0,...,19)
 
 ## ❓ FAQ
