@@ -17,9 +17,9 @@ import java.util.*;
 @Getter
 public class Body extends PagePart {
 
-    private static final int MAX_LINES = 80;
-    private static final int MAX_LINES_PER_COLUMN = 20;
-    private static final int MAX_COLUMNS = MAX_LINES / MAX_LINES_PER_COLUMN;
+    public static final int MAX_LINES = 80;
+    public static final int MAX_LINES_PER_COLUMN = 20;
+    public static final int MAX_COLUMNS = MAX_LINES / MAX_LINES_PER_COLUMN;
 
     private final BodyLine[][] lines = new BodyLine[20][4];
     private int columns;
