@@ -1,8 +1,10 @@
-package dev.fls.tablist.tab.page;
+package dev.fls.tablist.page;
 
-import dev.fls.tablist.tab.page.parts.Footer;
-import dev.fls.tablist.tab.page.parts.Header;
+import dev.fls.tablist.page.parts.Footer;
+import dev.fls.tablist.page.parts.Header;
 import dev.fls.tablist.utils.PacketUtils;
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import org.bukkit.entity.Player;
@@ -12,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
+@Setter
 public abstract class OptionalPart extends PagePart {
 
     public OptionalPart(PartType type) {
@@ -59,9 +63,6 @@ public abstract class OptionalPart extends PagePart {
         this.lines = lines.toArray(new String[0]);
     }
 
-    public String[] getLines() {
-        return lines;
-    }
 
     /**
      * This method returns all header lines as a single JSON String

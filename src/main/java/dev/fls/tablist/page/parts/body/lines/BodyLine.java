@@ -1,4 +1,4 @@
-package dev.fls.tablist.tab.page.parts.body;
+package dev.fls.tablist.page.parts.body.lines;
 
 import com.google.gson.Gson;
 import com.mojang.authlib.GameProfile;
@@ -25,6 +25,7 @@ import java.util.stream.Stream;
 
 public class BodyLine {
 
+    private LineType lineType;
     private final EntityPlayer entityPlayer;
     private int ping;
     private String text, correctLengthText;
@@ -32,14 +33,22 @@ public class BodyLine {
 
     public BodyLine(String text, int ping, int x, int z) {
         this(text, ping, x, z, x + "." + getZlineCode(z), null);
+        lineType = LineType.BLANK;
+    }
+
+    public BodyLine(String text, int ping, int x, int z, EntityPlayer entityPlayer) {
+        this(text, ping, x, z, x + "." + getZlineCode(z), entityPlayer);
+        lineType = LineType.PLAYER;
     }
 
     public BodyLine(String text, int ping, int x, int z, String name) {
         this(text, ping, x, z, name, null);
+        lineType = LineType.BLANK;
     }
 
     public BodyLine(String text, int x, int z, String name, EntityPlayer entityPlayer) {
         this(text, entityPlayer.ping, x, z, name, entityPlayer);
+        lineType = LineType.PLAYER;
     }
 
     public BodyLine(String text, int ping, int x, int z, String name, EntityPlayer entityPlayer) {
@@ -48,6 +57,7 @@ public class BodyLine {
         if(entityPlayer != null) {
             this.entityPlayer = entityPlayer;
             this.ping = entityPlayer.ping;
+            lineType = LineType.PLAYER;
         } else {
             this.entityPlayer = new EntityPlayer(nmsServer, world, new GameProfile(UUID.randomUUID(), name), new PlayerInteractManager(world));
             this.entityPlayer.ping = this.ping;
@@ -116,7 +126,7 @@ public class BodyLine {
                 MinecraftProfile profile = gson.fromJson(line, MinecraftProfile.class);
                 entityPlayer.getProfile().getProperties().put("textures", new Property("textures", profile.getProperties()[0].getValue(), profile.getProperties()[0].getSignature()));
             } else {
-                System.out.println("Connection could not be opened (Response code " + connection.getResponseCode() + ", " + connection.getResponseMessage() + ")");
+                Bukkit.getLogger().severe("BodyLine("+ x +"."+ z + ") skin could not be loaded. Reason: " + connection.getResponseCode() + ", " + connection.getResponseMessage());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -133,6 +143,10 @@ public class BodyLine {
         if(text.length() > 48) text = text.substring(0,47);
         this.text = text;
         setName();
+    }
+
+    public LineType getLineType() {
+        return lineType;
     }
 
     public String getText() {
@@ -159,6 +173,16 @@ public class BodyLine {
     public void show(Player player) {
         Packet[] packets = new Packet[]{
                 new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer),
+                new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_LATENCY, entityPlayer),
+        };
+
+        for(Packet packet : packets) {
+            PacketUtils.sendPacket(player, packet);
+        }
+    }
+
+    public void updatePing(Player player) {
+        Packet[] packets = new Packet[]{
                 new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.UPDATE_LATENCY, entityPlayer),
         };
 

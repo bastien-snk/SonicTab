@@ -1,4 +1,4 @@
-package dev.fls.tablist.tab.page;
+package dev.fls.tablist.page;
 
 public abstract class PagePart {
 
