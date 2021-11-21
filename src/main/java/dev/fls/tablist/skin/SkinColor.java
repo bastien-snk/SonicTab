@@ -1,4 +1,4 @@
-package dev.fls.tablist.tab.skin;
+package dev.fls.tablist.skin;
 
 /**
  * Provides the Texture & Signature for the Heads to be displayed in the TabList Body.

@@ -1,9 +1,11 @@
-package dev.fls.tablist.tab;
+package dev.fls.tablist;
 
-import dev.fls.tablist.tab.page.OptionalPart;
-import dev.fls.tablist.tab.page.parts.Footer;
-import dev.fls.tablist.tab.page.parts.Header;
-import dev.fls.tablist.tab.page.parts.body.Body;
+import dev.fls.tablist.page.OptionalPart;
+import dev.fls.tablist.page.parts.Footer;
+import dev.fls.tablist.page.parts.Header;
+import dev.fls.tablist.page.parts.body.Body;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Getter
+@Setter
 public class TabListTemplate {
 
     private static JavaPlugin plugin;
@@ -21,24 +25,8 @@ public class TabListTemplate {
 
     private final Header header = new Header();
     private final Footer footer = new Footer();
-    private final Body body = new Body();
+    private Body body = new Body();
     private final List<UUID> displayedTo = new ArrayList<>();
-
-    public Header getHeader() {
-        return header;
-    }
-
-    public Footer getFooter() {
-        return footer;
-    }
-
-    public Body getBody() {
-        return body;
-    }
-
-    public List<UUID> getDisplayedTo() {
-        return displayedTo;
-    }
 
     public static JavaPlugin getPlugin() {
         return plugin;
