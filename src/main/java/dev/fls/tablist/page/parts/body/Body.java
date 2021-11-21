@@ -49,8 +49,7 @@ public class Body extends PagePart {
         if(line != null) {
             // TODO faire if tablist affiché alors hide
             Bukkit.getOnlinePlayers().forEach(player ->  line.hide(player));
-
-            lines[z][x] = addFakeLine(x, z, applyLineWidth(lineWidth));
+            addFakeLine(x, z, applyLineWidth(lineWidth));
         }
         return this;
     }
