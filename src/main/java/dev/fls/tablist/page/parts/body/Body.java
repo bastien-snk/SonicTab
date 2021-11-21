@@ -161,8 +161,13 @@ public class Body extends PagePart {
     }
 
     public void hide(Player player) {
-        for(BodyLine line : linesAsList()) {
-            line.hide(player);
+        for(int x = 0; x < lines.length; x++) {
+            for (int z = 0; z < lines[x].length; z++) {
+                BodyLine line = lines[x][z];
+                if(line == null) continue;
+
+                line.hide(player);
+            }
         }
     }
 
