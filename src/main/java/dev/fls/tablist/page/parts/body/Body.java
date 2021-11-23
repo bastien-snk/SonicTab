@@ -65,7 +65,19 @@ public class Body extends PagePart {
 
     private Body removeBaseLines(Player player) {
         for(Player online : Bukkit.getOnlinePlayers()) {
+            EntityPlayer entityPlayer = ((CraftPlayer) online).getHandle();
+            List<Property> skin = new ArrayList<>(entityPlayer.getProfile().getProperties().get("textures"));
+
             PacketUtils.sendPacket(player, new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.REMOVE_PLAYER, ((CraftPlayer) online).getHandle()));
+
+            entityPlayer.getProfile().getProperties().removeAll("textures");
+            entityPlayer.getProfile().getProperties().put("textures", new Property("textures", skin.get(0).getValue(), skin.get(0).getSignature()));
+
+            // a debug
+            /*if(online == player) continue;
+            PacketUtils.sendPacket(player, new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.ADD_PLAYER, entityPlayer));
+            PacketUtils.sendPacket(player, new PacketPlayOutSpawnEntityLiving(entityPlayer));
+            PacketUtils.sendPacket(player, new PacketPlayOutNamedEntitySpawn(entityPlayer));*/
         }
         return this;
     }
